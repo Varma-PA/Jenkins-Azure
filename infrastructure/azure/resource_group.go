@@ -5,22 +5,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func CreateResourceGroup(ctx *pulumi.Context) error  {
+func CreateResourceGroup(ctx *pulumi.Context) (*core.ResourceGroup, error)   {
 
-	// _, rsg_err := resources.NewResourceGroup(ctx, "resourceGroup", &resources.ResourceGroupArgs{
-	// 	Location:          pulumi.String("eastus"),
-	// 	ResourceGroupName: pulumi.String("pulumi-jenkins-resource-group"),
-	// })
-	// if rsg_err != nil {
-	// 	return rsg_err
-	// }
-
-	_, rsg_err := core.NewResourceGroup(ctx, "pulumi_jenkins_resource_group", &core.ResourceGroupArgs{
+	rsg, rsg_err := core.NewResourceGroup(ctx, "pulumi_jenkins_resource_group", &core.ResourceGroupArgs{
 		Location: pulumi.String("East US"),
 	})
-	if rsg_err != nil {
-		return rsg_err
-	}
 	
-	return nil
+	return rsg, rsg_err
 }
